@@ -14,8 +14,58 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="lista_Juegos" *ngIf="folder =='lista'">
+    <ion-card *ngFor = "let e of  juegos">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-title>Juego {{e.nombre}}</ion-title>
+              <ion-title>Precio {{e.precio}}</ion-title>
+              <ion-title>Tipo {{e.tipo}}</ion-title>
+              <ion-title>Calificacion {{e.calificacion}}</ion-title>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-card>
   </div>
+
+  <div id="ingresa_Juegos" *ngIf="folder =='ingreso'">
+    <form (ngSubmit)="agregar_Juego()">
+      <ion-title></ion-title>
+        <ion-item>
+          <ion-label>Nombre</ion-label>
+            <ion-input name="user.nombre" [(ngModel)]="nombre" type="text"></ion-input>        
+        </ion-item>
+        <ion-item>
+          <ion-label>Precio</ion-label>
+            <ion-input name="user.precio" [(ngModel)]="precio" type="text"></ion-input>        
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo</ion-label>
+            <ion-input name="user.tipo" [(ngModel)]="tipo" type="text"></ion-input>        
+        </ion-item>
+        <ion-item>
+          <ion-label>Calificacion</ion-label>
+            <ion-input name="user.calificacion" [(ngModel)]="calificacion" type="text"></ion-input>        
+        </ion-item>
+        <ion-button type="submit">Actualizar</ion-button>
+    </form>
+  </div>
+
+  <div id="lista_Juegos" *ngIf="folder =='eliminar'">
+    <ion-card *ngFor = "let e of  juegos">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-title>Juego {{e.nombre}}</ion-title>
+              <ion-title>Precio {{e.precio}}</ion-title>
+              <ion-title>Tipo {{e.tipo}}</ion-title>
+              <ion-title>Calificacion {{e.calificacion}}</ion-title>
+              <ion-button (click)="eliminar(e.id)">eliminar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-card>
+  </div>
+
 </ion-content>
