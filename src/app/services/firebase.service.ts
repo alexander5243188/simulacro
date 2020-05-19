@@ -7,9 +7,9 @@ import {Action} from 'rxjs/internal/scheduler/Action';
 export interface estructura{
   id?:string;
   nombre:string;
-  precio:string;
-  tipo:string;
-  calificacion:string;
+  mensaje:string;
+  email:string;
+  //calificacion:string;
 };
 
 @Injectable({
@@ -22,7 +22,7 @@ export class FirebaseService {
   constructor(
     db:AngularFirestore
   ) {  
-    this.Collection=db.collection<estructura>('videojuegos');
+    this.Collection=db.collection<estructura>('mensajes');
     this.videojuegos$=this.Collection.snapshotChanges().pipe(map(
       actions =>{
         return actions.map(action =>{
@@ -34,12 +34,12 @@ export class FirebaseService {
     ));
   }
 
-  agregarVideojuegos(nombre_,precio_,tipo_,calificacion_){
+  //agregarVideojuegos(nombre_,precio_,tipo_,calificacion_){
+    agregarVideojuegos(nombre_,mensaje_,email_){
     this.Collection.add({
       nombre:nombre_,
-      precio:precio_,
-      tipo:tipo_,
-      calificacion:calificacion_
+      mensaje:mensaje_,
+      email:email_
     });
   }
   verVideojuegos(){

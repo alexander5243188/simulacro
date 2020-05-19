@@ -12,9 +12,9 @@ export class FolderPage implements OnInit {
   public folder: string;
   public juegos: estructura[];
   public nombre:string;
-  public precio:string;
-  public tipo:string;
-  public calificacion:string;
+  public mensaje:string;
+  public email:string;
+  //public calificacion:string;
 
   constructor(
     private activatedRoute: ActivatedRoute,    
@@ -31,13 +31,13 @@ export class FolderPage implements OnInit {
       this.juegos=res; 
     });
   }
-  agregar_juego(nombre_, precio_,tipo_,calificacion_){
-    console.log(nombre_,precio_,tipo_,calificacion_) ;
-    this.firebase.agregarVideojuegos(nombre_, precio_,tipo_,calificacion_);
+  agregar_juego(nombre_, mensaje_,email_){
+    console.log(nombre_,mensaje_,email_) ;
+    this.firebase.agregarVideojuegos(nombre_, mensaje_,email_);
     console.log("juego Agregado");
   }
   agregar_Juego(){
-    this.firebase.agregarVideojuegos(this.nombre, this.precio, this.tipo, this.calificacion);
+    this.firebase.agregarVideojuegos(this.nombre, this.mensaje, this.email);
     console.log("Usuario REgistrado");
   }
   
